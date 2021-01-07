@@ -12,7 +12,7 @@
     </button>
   </div>
   <mat-card-content class="create-user-content">
-    <form class="create-user-form" [formGroup]="form">
+    <form class="create-user-form" [formGroup]="createUserform">
       <mat-form-field>
         <mat-label>Name</mat-label>
 
@@ -23,8 +23,8 @@
         >
 
         <mat-error 
-          *ngIf="form.controls['name'].invalid &&
-          (form.controls['name'].dirty || form.controls['name'].touched)"
+          *ngIf="createUserform.controls['name'].invalid &&
+          (createUserform.controls['name'].dirty || createUserform.controls['name'].touched)"
         >
           Please, fill your name here.
         </mat-error>
@@ -35,14 +35,13 @@
         
         <input 
           matInput 
-          type="password" 
           placeholder="ex. Web Developer" 
           formControlName="job"
         >
 
         <mat-error 
-          *ngIf="form.controls['job'].invalid &&
-          (form.controls['job'].dirty || form.controls['job'].touched)"
+          *ngIf="createUserform.controls['job'].invalid &&
+          (createUserform.controls['job'].dirty || createUserform.controls['job'].touched)"
         >
           Please, fill your job here.
         </mat-error>
@@ -55,7 +54,7 @@
       class="create-user-button"
       mat-flat-button 
       color="primary" 
-      [disabled]="!form.valid || isCreatingUser" 
+      [disabled]="!createUserform.valid || isCreatingUser" 
       (click)="createUser()"
     >
       <span *ngIf="!isCreatingUser">Create User</span>

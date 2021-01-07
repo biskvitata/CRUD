@@ -1,1 +1,127 @@
-<p>update-user works!</p>
+<mat-card class="update-user">
+  <div *ngIf="!isLoading" class="update-user-container">
+    <div class="update-user-header">
+      <h2 class="update-user-title">Create User</h2>
+
+      <button 
+        mat-icon-button 
+        color="primary" 
+        aria-label="Example icon button with a home icon" 
+        (click)="goToHomepage()"
+      >
+        <mat-icon>home</mat-icon>
+      </button>
+    </div>
+    <mat-card-content class="update-user-content">
+      <form class="update-user-form" [formGroup]="updateUserForm">
+        <mat-form-field>
+          <mat-label>Avatar</mat-label>
+
+          <input 
+            matInput 
+            placeholder="ex. https://www....."
+            formControlName="avatar"
+          >
+
+          <mat-error 
+            *ngIf="updateUserForm.controls['avatar'].invalid &&
+            (updateUserForm.controls['avatar'].dirty || updateUserForm.controls['avatar'].touched)&&
+            updateUserForm.controls['avatar'].errors.required"
+          >
+            Please, inser URL of your avatar here.
+          </mat-error>
+
+          <mat-error 
+            *ngIf="updateUserForm.controls['avatar'].invalid &&
+            (updateUserForm.controls['avatar'].dirty || updateUserForm.controls['avatar'].touched)&&
+            updateUserForm.controls['avatar'].errors.pattern"
+          >
+            Please, enter valid url address.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>First Name</mat-label>
+          
+          <input 
+            matInput 
+            placeholder="ex. John" 
+            formControlName="firstName"
+          >
+
+          <mat-error 
+            *ngIf="updateUserForm.controls['firstName'].invalid &&
+            (updateUserForm.controls['firstName'].dirty || updateUserForm.controls['firstName'].touched)"
+          >
+            Please, fill your first name here.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Last Name</mat-label>
+          
+          <input 
+            matInput 
+            placeholder="ex. Doe" 
+            formControlName="lastName"
+          >
+
+          <mat-error 
+            *ngIf="updateUserForm.controls['lastName'].invalid &&
+            (updateUserForm.controls['lastName'].dirty || updateUserForm.controls['lastName'].touched)"
+          >
+            Please, fill your last name here.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          
+          <input 
+            matInput 
+            placeholder="ex. johndoe@johndoe.com" 
+            formControlName="email"
+          >
+
+          <mat-error 
+            *ngIf="updateUserForm.controls['email'].invalid &&
+            (updateUserForm.controls['email'].dirty || updateUserForm.controls['email'].touched)&&
+            updateUserForm.controls['email'].errors.required"
+          >
+            Please, fill your email here.
+          </mat-error>
+
+          <mat-error 
+            *ngIf="updateUserForm.controls['email'].invalid &&
+            (updateUserForm.controls['email'].dirty || updateUserForm.controls['email'].touched)&&
+            updateUserForm.controls['email'].errors.email"
+          >
+            Please, enter valid email address.
+          </mat-error>  
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+
+    <div class="update-user-actions">
+      <button
+        class="update-user-button"
+        mat-flat-button 
+        color="primary" 
+        [disabled]="!updateUserForm.valid || isUpdatingUser" 
+        (click)="updateUser()"
+      >
+        <span *ngIf="!isUpdatingUser">Update User</span>
+
+        <mat-spinner 
+          class='update-user-spinner'
+          [diameter]="smallSpinnerDiameter" 
+          *ngIf="isUpdatingUser"
+        ></mat-spinner>
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="isLoading" class="update-user-spinner-container">
+    <mat-spinner class="update-user-spinner" [diameter]="bigSpinnerDiameter"></mat-spinner>
+  </div>
+</mat-card>

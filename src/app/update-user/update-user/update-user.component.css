@@ -1,0 +1,41 @@
+.update-user {
+  box-shadow: none;
+}
+
+.update-user-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px;
+}
+
+.update-user-title {
+  margin: 0;
+}
+
+.update-user-actions {
+  text-align: center;
+}
+
+.update-user-spinner {
+  display: inline-block;
+}
+
+.update-user-button {
+  min-width: 150px;
+}
+
+.update-user-content {
+  display: flex;
+  justify-content: center;
+}
+
+.update-user-form {
+  width: 600px;
+  display:flex;
+  flex-flow: column;
+}
+
+.update-user-spinner-container {
+  text-align: center;
+}

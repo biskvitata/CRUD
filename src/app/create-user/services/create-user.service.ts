@@ -1,4 +1,4 @@
-import { CreateUpdateUser } from './../../models/create-update-user';
+import { CreateUser } from './../../models/create-update-user';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -13,7 +13,7 @@ export class CreateUserService {
   ) {
   }
 
-  createUser(user: CreateUpdateUser): Observable<any> {
+  createUser(user: CreateUser): Observable<any> {
     return this.http.post(`https://reqres.in/api/users`, user);
   }
 }

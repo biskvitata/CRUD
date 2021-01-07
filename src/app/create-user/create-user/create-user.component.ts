@@ -4,18 +4,20 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CreateUserService } from '../services/create-user.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-create-user',
   templateUrl: './create-user.component.html',
-  styleUrls: ['./create-user.component.css']
+  styleUrls: ['./create-user.component.css'],
+  providers: [DatePipe]
 })
 export class CreateUserComponent implements OnDestroy {
 
   isCreatingUser: boolean;
   smallSpinnerDiameter = 20;
 
-  public form = new FormGroup({
+  createUserform = new FormGroup({
     name: new FormControl('', Validators.required),
     job: new FormControl('', Validators.required)
   });
@@ -25,7 +27,8 @@ export class CreateUserComponent implements OnDestroy {
   constructor(
     private router: Router,
     private createUserService: CreateUserService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private datePipe: DatePipe
   ) { }
 
   goToHomepage(): void {
@@ -36,9 +39,10 @@ export class CreateUserComponent implements OnDestroy {
     this.isCreatingUser = true;
 
     this.createUserSubscription = this.createUserService
-      .createUser(this.form.getRawValue()).subscribe(res => {
+      .createUser(this.createUserform.getRawValue()).subscribe(res => {
+        const dateTimeNow = this.datePipe.transform(res.createdAt, 'dd-MM-yyyy hh:mm:ss');
         this.isCreatingUser = false;
-        this.snackBar.open('User Successfully Created', 'Okay', {
+        this.snackBar.open(`User Successfully Created at ${dateTimeNow}`, 'Okay', {
           duration: 3000
         });
       })
