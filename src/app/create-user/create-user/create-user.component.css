@@ -1,0 +1,37 @@
+.create-user {
+  box-shadow: none;
+}
+
+.create-user-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px;
+}
+
+.create-user-title {
+  margin: 0;
+}
+
+.create-user-actions {
+  text-align: center;
+}
+
+.create-user-spinner {
+  display: inline-block;
+}
+
+.create-user-button {
+  min-width: 150px;
+}
+
+.create-user-content {
+  display: flex;
+  justify-content: center;
+}
+
+.create-user-form {
+  width: 600px;
+  display:flex;
+  flex-flow: column;
+}

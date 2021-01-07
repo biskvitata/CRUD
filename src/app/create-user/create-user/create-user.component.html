@@ -1,0 +1,70 @@
+<mat-card class="create-user">
+  <div class="create-user-header">
+    <h2 class="create-user-title">Create User</h2>
+
+    <button 
+      mat-icon-button 
+      color="primary" 
+      aria-label="Example icon button with a home icon" 
+      (click)="goToHomepage()"
+    >
+      <mat-icon>home</mat-icon>
+    </button>
+  </div>
+  <mat-card-content class="create-user-content">
+    <form class="create-user-form" [formGroup]="form">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+
+        <input 
+          matInput 
+          placeholder="ex. John" 
+          formControlName="name"
+        >
+
+        <mat-error 
+          *ngIf="form.controls['name'].invalid &&
+          (form.controls['name'].dirty || form.controls['name'].touched)"
+        >
+          Please, fill your name here.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Job</mat-label>
+        
+        <input 
+          matInput 
+          type="password" 
+          placeholder="ex. Web Developer" 
+          formControlName="job"
+        >
+
+        <mat-error 
+          *ngIf="form.controls['job'].invalid &&
+          (form.controls['job'].dirty || form.controls['job'].touched)"
+        >
+          Please, fill your job here.
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+
+  <div class="create-user-actions">
+    <button
+      class="create-user-button"
+      mat-flat-button 
+      color="primary" 
+      [disabled]="!form.valid || isCreatingUser" 
+      (click)="createUser()"
+    >
+      <span *ngIf="!isCreatingUser">Create User</span>
+
+      <mat-spinner 
+        class='create-user-spinner'
+        [diameter]="smallSpinnerDiameter" 
+        *ngIf="isCreatingUser"
+      ></mat-spinner>
+    </button>
+  </div>
+</mat-card>

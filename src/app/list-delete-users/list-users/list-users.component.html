@@ -1,0 +1,110 @@
+<div class="users-list">
+  <div class="users-list-header">
+    <h2 class='users-list-title'>List of users</h2>
+
+    <button 
+      class="users-list-button" 
+      mat-raised-button 
+      (click)="createUser()"
+    >
+      Create user
+    </button>
+  </div>
+
+  <div *ngIf="!isLoading" class="users-list-table">
+    <table mat-table [dataSource]="usersList">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID.</th>
+
+        <td mat-cell *matCellDef="let element">
+          {{element.id}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="avatar">
+        <th mat-header-cell *matHeaderCellDef></th>
+
+        <td mat-cell *matCellDef="let element">
+          <img 
+            class="users-list-image" 
+            src="{{element.avatar}}" 
+            alt="Image of a person"
+          >
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef>First Name</th>
+
+        <td mat-cell *matCellDef="let element">
+          {{element.firstName}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef>Last Name</th>
+
+        <td mat-cell *matCellDef="let element">
+          {{element.lastName}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        
+        <td mat-cell *matCellDef="let element">
+          {{element.email}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+
+        <td mat-cell *matCellDef="let element"> 
+          <button 
+            class="users-list-action-button"
+            mat-raised-button
+            (click)="goToEditUser(element.id)"
+          >
+            Edit
+          </button> 
+
+          <button 
+            class="users-list-action-button"
+            mat-raised-button 
+            (click)="openDialog(element.id, element.firstName, element.lastName)"
+            [disabled]="element.id === deteleButtonClickedId && deleteInProgress"
+          >
+            Delete
+          </button> 
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <div class="users-list-button-container">
+      <button 
+        class="users-list-button" 
+        *ngIf="hasMoreData" 
+        mat-raised-button 
+        (click)="loadUsers(true)" 
+        [disabled]="isLoadingMore"
+      >
+        <span *ngIf="!isLoadingMore">Load More</span>
+
+        <mat-spinner 
+          class='users-list-spinner' 
+          [diameter]="smallSpinnerDiameter" 
+          *ngIf="isLoadingMore"
+        ></mat-spinner>
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="isLoading" class="users-list-spinner-container">
+    <mat-spinner class="users-list-spinner" [diameter]="bigSpinnerDiameter"></mat-spinner>
+  </div>
+</div>

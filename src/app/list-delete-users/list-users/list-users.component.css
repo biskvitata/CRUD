@@ -1,0 +1,49 @@
+.users-list {
+  position: relative;
+}
+
+.users-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.users-list-title {
+  margin: 0;
+}
+
+.users-list-image {
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+}
+
+.users-list-spinner {
+  display: inline-block;
+}
+
+.users-list-button-container {
+  margin-top: 20px;
+}
+
+.users-list-button {
+  min-width: 120px;
+}
+
+.users-list-table table {
+  width: 100%;
+}
+
+.users-list-table th {
+  text-align: left;
+}
+
+.users-list-action-button + .users-list-action-button {
+  margin-left: 10px;
+}
+
+.users-list-button-container,
+.users-list-spinner-container {
+  text-align: center;
+}
