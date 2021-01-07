@@ -35,3 +35,7 @@
   display:flex;
   flex-flow: column;
 }
+
+.create-user-field + .create-user-field {
+  margin-top: 10px;
+}

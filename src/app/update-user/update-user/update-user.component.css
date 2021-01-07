@@ -39,3 +39,7 @@
 .update-user-spinner-container {
   text-align: center;
 }
+
+.update-user-field + .update-user-field {
+  margin-top: 10px;
+}
